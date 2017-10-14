@@ -69,6 +69,21 @@ router.post("/addUser", function(req, res) {
     res.json(true);
 });
 
+router.get("/userInfo", function(req, res) {
+    db.Transactions.findAll({
+        attributes: ['Amount', 'createdAt'],
+        where : {
+            UserId: 20
+        }
+    })
+    .then(function(data) {
+        console.log('data: ', data);
+        for (i in data) {
+            console.log(data[i].dataValues);
+        }
+    });
+});
+
 router.get("/data.csv", function(req, res) {
     res.sendFile(path.join(__dirname, "data.csv"));
 });
