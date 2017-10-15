@@ -79,7 +79,7 @@
         width = 600 - margin.left - margin.right,
         height = 270 - margin.top - margin.bottom;
     // Parse the date / time
-    var parseDate = d3.time.format("%d-%b-%y").parse;
+    var parseDate = d3.time.format("%Y-%m-%dT%X.%LZ").parse;
     // Set the ranges
     var x = d3.time.scale().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
@@ -90,8 +90,8 @@
         .orient("left").ticks(5);
     // Define the line
     var valueline = d3.svg.line()
-        .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(d.close); });
+        .x(function (d) { return x(d.createdAt); })
+        .y(function (d) { return y(d.Amount); });
     // Adds the svg canvas`
     var svg = d3.select(".graph")
         .append("svg")
@@ -102,15 +102,15 @@
         "translate(" + margin.left + "," + margin.top + ")");
     // Get the data
         d3.json(window.location.origin + "/userInfo", function(error, data) {
-
+            console.log(data);
     // d3.csv("data.csv", function (error, data) {
         data.forEach(function (d) {
-            d.date = parseDate(d.date);
-            d.close = +d.close;
+            d.createdAt = parseDate(d.createdAt);
+            d.Amount = +d.Amount;
         });
         // Scale the range of the data
-        x.domain(d3.extent(data, function (d) { return d.date; }));
-        y.domain([0, d3.max(data, function (d) { return d.close; })]);
+        x.domain(d3.extent(data, function (d) { return d.createdAt; }));
+        y.domain([0, d3.max(data, function (d) { return d.Amount; })]);
         // Add the valueline path.
         svg.append("path")
             .attr("class", "line")

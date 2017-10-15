@@ -71,17 +71,31 @@ router.post("/addUser", function(req, res) {
 
 router.get("/userInfo", function(req, res) {
     db.Transactions.findAll({
-        attributes: ['Amount', 'createdAt'],
-        where : {
-            UserId: 20
-        }
-    })
-    .then(function(data) {
-        console.log('data: ', data);
-        for (i in data) {
-            console.log(data[i].dataValues);
-        }
-    });
+            attributes: ['Amount', 'createdAt'],
+            where: {
+                UserId: 20
+            }
+        })
+        .then(function(data) {
+            // console.log('data: ', data);
+            var userData = [];
+            for (i in data) {
+                console.log(data[i].dataValues);
+                userData.push(data[i].dataValues)
+            }
+
+           //  userData = [{
+           //     date: "2017-10-15T12:00:00.000Z",
+           //     close: 58.13
+           // },{
+           //      date: "2017-04-01T12:00:00.000Z",
+           //      close: 53.98
+           //  }];
+            console.log(userData);
+
+            res.json(userData);
+
+        });
 });
 
 router.get("/data.csv", function(req, res) {
