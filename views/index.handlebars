@@ -155,7 +155,13 @@
               url: window.location.origin + "/api/transactions",
               data: newTransaction
             }).success(function(response) {
-              console.log(response);
+                console.log(response);
+                var html = "";
+                for(i in response) {
+                    html += `<tr><td>${response[i].createdAt}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                            `<td>${response[i].Amount}</td></tr>`;
+                }
+                $('.tableBody').append(html);
             });
         });
 
