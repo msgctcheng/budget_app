@@ -34,15 +34,26 @@
             <p>User's Spending</p>
             <div class="transactions-container">
                 <table class="transTable">
-                    <tbody>
-                    <tr class="headLine">
+                    <thead class="headLine">
                         <th>Date</th>
                         <th>Category</th>
                         <th>Description</th>
                         <th>Amount</th>
-                    </tr>
-
-
+                    </thead>
+                    <tbody>
+                        <script id="tableTemplate" type="text/x-handlebars-template">
+                            {{#Transactions}}
+                            <tr>
+                                <td>{{createdAt}}</td>
+                                <td>{{Category}}</td>
+                                <td>{{Description}}</td>
+                                <td>{{Amount}}</td>
+                                <td>{{createdA}}</td> 
+                            </tr>
+                            {{/Transactions}}
+                        
+                        </script>
+                        
                     </tbody>
                 </table>
             </div>
