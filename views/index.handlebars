@@ -1,75 +1,76 @@
-<div style="display: none"> {{budget.testing}} </div>
-<div class="g-signin2" id="indexSign" data-onsuccess="onSignIn"></div>
-<div id="dashboard_top" class="tabcontent tabheader">
+<div class="bodywrap">
+    <div class="g-signin2" id="indexSign" data-onsuccess="onSignIn"></div>
     <div class="logBox">
-        <a href="#" onclick="signOut();">Sign out</a>
+        <a class="signOut" href="#" onclick="signOut();">Sign out</a>
     </div>
-    <h2>Dashboard Hello</h2>
-    <p>User Dashboard</p>
-</div>
-<div id="spending_top" class="tabcontent tabheader">
-    <div class="logBox">
-        <a href="#" onclick="signOut();">Sign out</a>
-    </div>
-    <h2>Spending</h2>
-    <p>User's Spending</p>
-</div>
-<button class="tablink" onclick="openTab('dashboard_top', 'dashboard_bot', this, '#2F3AFF')" id="defaultOpen">Dashboard</button>
-<button class="tablink" onclick="openTab('spending_top', 'spending_bot', this, '#FF473C')">Spending</button>
-<div id="dashboard_bot" class="tabcontent tabBody">
-    <div class="dashboardCard card">
-        <h3>Dashboard</h3>
+    <div id="dashboard_top" class="tabcontent tabheader">
+        <h2>Dashboard Hello</h2>
         <p>User Dashboard</p>
-        <div class="graph"></div>
-        <button class="modalButton">Add Transaction</button>
     </div>
-</div>
-<div id="spending_bot" class="tabcontent tabBody">
-    <div class="spendingCard card">
-        <h3>Spending</h3>
+
+    <div id="spending_top" class="tabcontent tabheader">
+        <h2>Spending</h2>
         <p>User's Spending</p>
-        <div class="transactions-container">
-            <table class="transTable">
-                <tr class="headLine">
-                    <th>Date</th>
-                    <th>GoogleID</th>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Balance</th>
-                </tr>
-
-            </table>
-        </div>
-        <button class="modalButton">Add Transaction</button>
     </div>
-</div>
 
-<!-- Appends d3 graph to empty div -->
-<div id="modal">
-    <div class="modalContent">
+    <button class="tablink" onclick="openTab('dashboard_top', 'dashboard_bot', this, '#0D6BFF')" id="defaultOpen">Dashboard</button>
+    <button class="tablink" onclick="openTab('spending_top', 'spending_bot', this, '#28D65C')">Spending</button>
 
-        <div class="switch moditem">
-            <input type="checkbox" class="switch-checkbox" id="myswitch" checked>
-            <label class="switch-label" for="myswitch">
-                <span class="switch-inner"></span>
-                <span class="switch-switch"></span>
-            </label>
+    <div id="dashboard_bot" class="tabcontent tabBody">
+        <div class="dashboardCard card">
+            <h3>Dashboard</h3>
+            <p>User Dashboard</p>
+            <div class="graph"></div>
+            <button class="modalButton">Add Transaction</button>
         </div>
+    </div>
+    <div id="spending_bot" class="tabcontent tabBody">
+        <div class="spendingCard card">
+            <h3>Spending</h3>
+            <p>User's Spending</p>
+            <div class="transactions-container">
+                <table class="transTable">
+                    <tr class="headLine">
+                        <th>Date</th>
+                        <th>GoogleID</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                    </tr>
 
-        <input class="amount moditem" type="text" placeholder="Amount">
+                </table>
+            </div>
+            <button class="modalButton">Add Transaction</button>
+        </div>
+    </div>
 
-        <select id="drop" class="dropCont moditem">
-            <option value="rent">Rent</option>
-            <option value="bills">Bills</option>
-            <option value="food">Food</option>
-            <option value="gas">Gas</option>
-            <option value="other">Other</option>
-        </select>
+    <!-- Appends d3 graph to empty div -->
+    <div id="modal">
+        <div class="modalContent">
 
-        <input class="description moditem" type="text" placeholder="Description">
+            <div class="switch moditem">
+                <input type="checkbox" class="switch-checkbox" id="myswitch" checked>
+                <label class="switch-label" for="myswitch">
+                    <span class="switch-inner"></span>
+                    <span class="switch-switch"></span>
+                </label>
+            </div>
 
-        <button class="modalSubmit moditem">Submit</button>
-        <span class="closeModal moditem">&times;</span>
+            <input class="amount moditem" type="text" placeholder="Amount">
+
+            <select id="drop" class="dropCont moditem">
+                <option value="rent">Rent</option>
+                <option value="bills">Bills</option>
+                <option value="food">Food</option>
+                <option value="gas">Gas</option>
+                <option value="other">Other</option>
+            </select>
+
+            <input class="description moditem" type="text" placeholder="Description">
+
+            <button class="modalSubmit moditem">Submit</button>
+            <span class="closeModal moditem">&times;</span>
+        </div>
     </div>
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
