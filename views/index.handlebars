@@ -95,7 +95,7 @@
                 if (googleAuth.isSignedIn.get()) {
                     console.log('User was logged in on page load.')
                     validateUser(googleAuth.currentUser.get());
-                }
+                } 
 
                 // Listen for changes in the user's signed-in status.
                 googleAuth.isSignedIn.listen((signedIn) => {
