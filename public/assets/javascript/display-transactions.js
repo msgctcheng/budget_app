@@ -1,6 +1,6 @@
 $(document).ready(function() {
 // container that holds all the transactions
-	var transactionsContainer = $(".transactions-container")
+	var transactionsContainer = $(".transTable")
 	// variable to hold our transactions
 	var transactions;
 	// the code below handles the case where we want to get the transactions
@@ -34,7 +34,7 @@ $(document).ready(function() {
 	// initializeRows handles appending all of our constructed transaction HTML
 	// inside the transactionsContainer
 	function initializeRows() {
-		transactionsContainer.empty();
+		//transactionsContainer.empty();
 		var transToAdd = [];
 		for (var i = 0; i < transactions.length; i++) {
 			transToAdd.push(transactions[i]);
@@ -64,13 +64,3 @@ $(document).ready(function() {
  //    return newTransPanel;
 	// }
 	// This function displays a message when there are no transactions
-	function displayEmpty(id) {
-		var query = window.location.search;
-    transactionsContainer.empty();
-    var messageh2 = $("<h2>");
-    messageh2.css({ "text-align": "center", "margin-top": "50px" });
-    messageh2.html("No transactions yet");
-    transactionsContainer.append(messageh2);
-	}
-
-});
