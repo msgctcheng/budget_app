@@ -2,7 +2,6 @@
     max-width: 75%;
     margin: auto;
 }
-
 .login_card {
     background-color: #28D65C;  
     width: 75%;
@@ -121,7 +120,9 @@ a:hover {
     background-color: #777777;
     cursor: pointer;
 }
-
+.headcontent {
+    animation: fadeIn 0.8s;
+}
 .tablink {
     background-color: #666666;
     color: white;
@@ -145,6 +146,7 @@ a:hover {
     color: white;
     text-align: center;
 }
+
 
 input[type=text] {
     border: none;
@@ -345,6 +347,7 @@ th, td {
 }
 .transTable {
     width: 100%;
+    margin-bottom: 20px;
 }
 .newWrapper {
     width: 75%;
@@ -362,6 +365,7 @@ th, td {
     margin-top: 15%;
     color: white;
     line-height: 40px;
+    animation: fadeIn 0.8s;
 }
 .newBox * {
     margin-bottom: 15px;
@@ -375,6 +379,7 @@ th, td {
     padding: 50px;
     margin-top: 5%;
     margin-bottom: 2%;
+    animation: fadeIn 0.8s;
 }
 .card:hover {
     box-shadow: 0 20px 18px 0 rgba(0,0,0,0.2);
@@ -383,5 +388,8 @@ th, td {
     background-color: #28D65C;
 }
 .spendingCard {
+    background-color: #0D6BFF;
+}
+.logCard {
     background-color: #0D6BFF;
 }
