@@ -40,19 +40,7 @@
                         <th>Description</th>
                         <th>Amount</th>
                     </thead>
-                    <tbody>
-                        <script id="tableTemplate" type="text/x-handlebars-template">
-                            {{#each object}}
-                            <tr>
-                                <td>{{createdAt}}</td>
-                                <td>{{Category}}</td>
-                                <td>{{Description}}</td>
-                                <td>{{Amount}}</td>
-                                <td>{{createdA}}</td> 
-                            </tr>
-                            {{/each}}
-                        
-                        </script>
+                    <tbody class="tableBody">
                         
                     </tbody>
                 </table>
@@ -127,7 +115,7 @@
 
         });
     }
-var exphbs  = require('express-handlebars');
+
     const validateUser = (user) => {
         // console.log(`ID Token: ${user.getAuthResponse().id_token}`);
 
@@ -168,9 +156,6 @@ var exphbs  = require('express-handlebars');
               data: newTransaction
             }).success(function(response) {
               console.log(response);
-              var source = $("#tableTemplate").html();
-              var template = Handlebars.compile(source);
-              $(".transTable").append(template(response));
             });
         });
 
