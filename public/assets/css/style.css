@@ -340,11 +340,11 @@ select:hover {
     justify-content: center;
     border-radius: 15px;
 }
-
+th, td {
+    width: 25%
+}
 .transTable {
     width: 100%;
-    padding: 25px;
-    margin-bottom: 20px;;
 }
 .newWrapper {
     width: 75%;
