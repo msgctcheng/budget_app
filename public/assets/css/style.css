@@ -2,8 +2,9 @@
     max-width: 75%;
     margin: auto;
 }
+
 .login_card {
-    background-color: #28D65C;  
+    background-color: #28D65C;
     width: 75%;
     margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -14,18 +15,19 @@
     color: white;
 }
 
-
 .logBox {
     float: right;
     position: relative;
     top: 22px;
     right: 20px;
 }
+
 .signOut {
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
     font-size: 14px;
     text-decoration: none;
 }
+
 h1 {
     text-align: center;
     margin: auto;
@@ -48,13 +50,11 @@ path {
 body {
     font-family: "helvetica";
     background-color: #67E0C8;
-    
 }
 
 .bodywrap {
     width: 85%;
     margin: auto;
-    
 }
 
 #indexSign {
@@ -67,9 +67,11 @@ body {
 #loginSign {
     margin-bottom: 20px;
 }
+
 button {
     text-decoration: none;
 }
+
 .newSubmit {
     border-radius: 20px;
     border: none;
@@ -79,8 +81,9 @@ button {
     font-size: 16px;
     text-decoration: none;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
+
 .newSubmit:hover {
     background-color: #777777;
     cursor: pointer;
@@ -113,6 +116,7 @@ a:hover {
     background-color: #777777;
     cursor: pointer;
 }
+
 .headcontent {
     animation: fadeIn 0.8s;
 }
@@ -141,8 +145,8 @@ a:hover {
     color: white;
     text-align: center;
     transition: background-color 2s;
-    
 }
+
 .tabBody {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -152,7 +156,6 @@ a:hover {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
-
 
 input[type=text] {
     border: none;
@@ -177,7 +180,7 @@ select:hover {
     padding: 9px 20px;
     background-color: #666666;
     color: white;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 .modalButton:hover {
@@ -297,7 +300,7 @@ select:hover {
     width: 10%;
     font-size: 1vw;
     text-align: center;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 .modalSubmit:hover {
@@ -350,13 +353,17 @@ select:hover {
     justify-content: center;
     border-radius: 15px;
 }
-th, td {
+
+th,
+td {
     width: 25%
 }
+
 .transTable {
     width: 100%;
     margin-bottom: 20px;
 }
+
 .newWrapper {
     width: 75%;
     margin: auto;
@@ -376,12 +383,15 @@ th, td {
     animation: fadeIn 0.8s;
     border-radius: 15px;
 }
+
 .newBox * {
     margin-bottom: 15px;
 }
+
 .newCard {
     background-color: #28D65C;
 }
+
 .card {
     width: 75%;
     margin: auto;
@@ -398,23 +408,27 @@ th, td {
 .dashboardCard {
     background-color: #28D65C;
 }
+
 .spendingCard {
     background-color: #0D6BFF;
 }
+
 .logCard {
     background-color: #0D6BFF;
 }
+
 svg {
     width: 90%;
 }
 
 #newSign {
-position: absolute;
-top: 25vh;
-left: 20vw;
+    position: absolute;
+    top: 25vh;
+    left: 20vw;
 }
+
 #newSignOut {
-position: absolute;
-left: 69vw;
-top: 25vh;
+    position: absolute;
+    left: 69vw;
+    top: 25vh;
 }
