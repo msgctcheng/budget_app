@@ -23,6 +23,8 @@
 }
 .signOut {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+    font-size: 14px;
+    text-decoration: none;
 }
 h1 {
     text-align: center;
@@ -65,15 +67,17 @@ body {
 #loginSign {
     margin-bottom: 20px;
 }
-
+button {
+    text-decoration: none;
+}
 .newSubmit {
     border-radius: 20px;
     border: none;
-    padding: 9px 40px;
+    padding: 9px 35px;
     background-color: #666666;
     color: white;
     font-size: 16px;
-    text-decoration: underline;
+    text-decoration: none;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
 }
@@ -99,9 +103,10 @@ a:link,
 a:visited {
     background-color: #666666;
     color: white;
-    padding: 9px 30px;
+    padding: 9px 32px;
     border-radius: 20px;
     text-align: center;
+    text-decoration: none;
 }
 
 a:hover {
@@ -136,6 +141,16 @@ a:hover {
     color: white;
     text-align: center;
     transition: background-color 2s;
+    
+}
+.tabBody {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.tabheader {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 
@@ -359,9 +374,13 @@ th, td {
     color: white;
     line-height: 40px;
     animation: fadeIn 0.8s;
+    border-radius: 15px;
 }
 .newBox * {
     margin-bottom: 15px;
+}
+.newCard {
+    background-color: #28D65C;
 }
 .card {
     width: 75%;
@@ -373,6 +392,7 @@ th, td {
     margin-top: 5%;
     margin-bottom: 2%;
     animation: fadeIn 0.8s;
+    border-radius: 15px;
 }
 
 .dashboardCard {
@@ -386,4 +406,15 @@ th, td {
 }
 svg {
     width: 90%;
+}
+
+#newSign {
+position: absolute;
+top: 25vh;
+left: 20vw;
+}
+#newSignOut {
+position: absolute;
+left: 69vw;
+top: 25vh;
 }
