@@ -14,21 +14,6 @@
     color: white;
 }
 
-.loginBtn {
-    border-radius: 20px;
-    border: none;
-    padding: 9px 40px;
-    background-color: #666666;
-    color: white;
-    font-size: 16px;
-    text-decoration: underline;
-    margin-bottom: 20px;
-}
-
-.loginBtn:hover {
-    background-color: #777777;
-    cursor: pointer;
-}
 
 .logBox {
     float: right;
@@ -36,7 +21,9 @@
     top: 22px;
     right: 20px;
 }
-
+.signOut {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
+}
 h1 {
     text-align: center;
     margin: auto;
@@ -88,6 +75,7 @@ body {
     font-size: 16px;
     text-decoration: underline;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
 }
 .newSubmit:hover {
     background-color: #777777;
@@ -136,6 +124,7 @@ a:hover {
     padding: 14px 16px;
     font-size: 17px;
     width: 50%;
+    transition: background-color 0.8s;
 }
 
 .tablink:hover {
@@ -146,6 +135,7 @@ a:hover {
     padding: 50px;
     color: white;
     text-align: center;
+    transition: background-color 2s;
 }
 
 
@@ -172,6 +162,7 @@ select:hover {
     padding: 9px 20px;
     background-color: #666666;
     color: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
 }
 
 .modalButton:hover {
@@ -291,6 +282,7 @@ select:hover {
     width: 10%;
     font-size: 1vw;
     text-align: center;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 1.5px 5px 0 rgba(0,0,0,0.19);
 }
 
 .modalSubmit:hover {
@@ -382,9 +374,7 @@ th, td {
     margin-bottom: 2%;
     animation: fadeIn 0.8s;
 }
-.card:hover {
-    box-shadow: 0 20px 18px 0 rgba(0,0,0,0.2);
-}
+
 .dashboardCard {
     background-color: #28D65C;
 }
