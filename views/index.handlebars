@@ -75,55 +75,182 @@
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-    // Set the dimensions of the canvas / graph
-    var margin = { top: 30, right: 20, bottom: 30, left: 50 },
-        width = 600 - margin.left - margin.right,
-        height = 270 - margin.top - margin.bottom;
-    // Parse the date / time
-    var parseDate = d3.time.format("%Y-%m-%dT%X.%LZ").parse;
-    // Set the ranges
-    var x = d3.time.scale().range([0, width]);
-    var y = d3.scale.linear().range([height, 0]);
-    // Define the axes
-    var xAxis = d3.svg.axis().scale(x)
-        .orient("bottom").ticks(5);
-    var yAxis = d3.svg.axis().scale(y)
-        .orient("left").ticks(5);
-    // Define the line
-    var valueline = d3.svg.line()
-        .x(function (d) { return x(d.createdAt); })
-        .y(function (d) { return y(d.Amount); });
-    // Adds the svg canvas`
-    var svg = d3.select(".graph")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
-    // Get the data
-        d3.json(window.location.origin + "/userInfo", function(error, data) {
-            console.log(data);
-    // d3.csv("data.csv", function (error, data) {
-        data.forEach(function (d) {
-            d.createdAt = parseDate(d.createdAt);
-            d.Amount = +d.Amount;
+    function gapiInit() {
+    // Load the auth2 module into the Google API object.
+        gapi.load('auth2', function() {
+
+            console.log('Loaded auth2');
+            let googleUser;
+
+            // Init the auth2 module with our client ID
+            // https://developers.google.com/identity/sign-in/web/devconsole-project
+            const googleAuth = gapi.auth2.init({
+                client_id: '482330377038-kppprl611bgmbattktqroa9rl663dh2f.apps.googleusercontent.com'
+            });
+
+            // Wait until the auth module is finished loading via a Promise.
+            googleAuth.then(() => {
+
+                // The user may have gotten automatically signed-in via Google.
+                if (googleAuth.isSignedIn.get()) {
+                    console.log('User was logged in on page load.')
+                    validateUser(googleAuth.currentUser.get());
+                }
+
+                // Listen for changes in the user's signed-in status.
+                googleAuth.isSignedIn.listen((signedIn) => {
+                    if (signedIn) {
+                        console.log('User just signed in manually.');
+                        validateUser(googleAuth.currentUser.get());
+                    } else {
+                        console.log('User just signed out.');
+                    }
+                });
+            }, (error) => console.error(error));
+
         });
-        // Scale the range of the data
-        x.domain(d3.extent(data, function (d) { return d.createdAt; }));
-        y.domain([0, d3.max(data, function (d) { return d.Amount; })]);
-        // Add the valueline path.
-        svg.append("path")
-            .attr("class", "line")
-            .attr("d", valueline(data));
-        // Add the X Axis
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
-        // Add the Y Axis
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
-    });
+    }
+
+    const validateUser = (user) => {
+        // console.log(`ID Token: ${user.getAuthResponse().id_token}`);
+
+        const profile = user.getBasicProfile();
+        // console.log(`ID: ${profile.getId()}`);
+        // console.log(`Name: ${profile.getName()}`);
+        // console.log(`Email: ${profile.getEmail()}`);
+        // console.log(`ImageUrl: ${profile.getImageUrl()}`);
+        // console.log("validated");
+        // 1. Send the token to the backend...
+        // 2. so that we can use the google-auth-library to...
+        // 3. verify whether the info is valid or if a malicious user is spoofing a Google account.
+        var id_token = user.getAuthResponse().id_token;
+        $.post('/login/verify', {"idtoken" : id_token})
+            .then((response) => {
+                console.log('Response from /api/auth:', response.email);
+                
+                if (response.valid) {
+                    // The 'sub' key should be the same as the Profile ID we printed out on line 5 here.
+                    // ajax request for user info
+                    // then d3 stuff
+                    $.ajax({
+                        type: "POST",
+                        url: window.location.origin + "/userInfo",
+                        data: {email : response.email}
+                    }).success(function(response) {
+
+                        // console.log(response);
+                        //d3 code
+
+                        var margin = { top: 30, right: 20, bottom: 30, left: 50 },
+                            width = 600 - margin.left - margin.right,
+                            height = 270 - margin.top - margin.bottom;
+                        // Parse the date / time
+                        var parseDate = d3.time.format("%Y-%m-%dT%X.%LZ").parse;
+                        // Set the ranges
+                        var x = d3.time.scale().range([0, width]);
+                        var y = d3.scale.linear().range([height, 0]);
+                        // Define the axes
+                        var xAxis = d3.svg.axis().scale(x)
+                            .orient("bottom").ticks(5);
+                        var yAxis = d3.svg.axis().scale(y)
+                            .orient("left").ticks(5);
+                        // Define the line
+                        var valueline = d3.svg.line()
+                            .x(function (d) { return x(d.createdAt); })
+                            .y(function (d) { return y(d.Amount); });
+                        // Adds the svg canvas`
+                        var svg = d3.select(".graph")
+                            .append("svg")
+                            .attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom)
+                            .append("g")
+                            .attr("transform",
+                            "translate(" + margin.left + "," + margin.top + ")");
+                        // Get the data
+                            // d3.json(window.location.origin + "/userInfo", function(error, data) {
+                            var data = response;
+                            // console.log(data)
+                            data.forEach(function (d) {
+                                d.createdAt = parseDate(d.createdAt);
+                                d.Amount = +d.Amount;
+                            });
+                            // Scale the range of the data
+                            x.domain(d3.extent(data, function (d) { return d.createdAt; }));
+                            y.domain([0, d3.max(data, function (d) { return d.Amount; })]);
+                            // Add the valueline path.
+                            svg.append("path")
+                                .attr("class", "line")
+                                .attr("d", valueline(data));
+                            // Add the X Axis
+                            svg.append("g")
+                                .attr("class", "x axis")
+                                .attr("transform", "translate(0," + height + ")")
+                                .call(xAxis);
+                            // Add the Y Axis
+                            svg.append("g")
+                                .attr("class", "y axis")
+                                .call(yAxis);
+                                        });
+
+                } else {
+                    // The backend authetnication failed. The front-end user was trying to spoof
+                    // and impersonate a Google account.
+                    console.error(response.error);
+                }
+            });
+    };
+
+
+    // Set the dimensions of the canvas / graph
+    // var margin = { top: 30, right: 20, bottom: 30, left: 50 },
+    //     width = 600 - margin.left - margin.right,
+    //     height = 270 - margin.top - margin.bottom;
+    // // Parse the date / time
+    // var parseDate = d3.time.format("%Y-%m-%dT%X.%LZ").parse;
+    // // Set the ranges
+    // var x = d3.time.scale().range([0, width]);
+    // var y = d3.scale.linear().range([height, 0]);
+    // // Define the axes
+    // var xAxis = d3.svg.axis().scale(x)
+    //     .orient("bottom").ticks(5);
+    // var yAxis = d3.svg.axis().scale(y)
+    //     .orient("left").ticks(5);
+    // // Define the line
+    // var valueline = d3.svg.line()
+    //     .x(function (d) { return x(d.createdAt); })
+    //     .y(function (d) { return y(d.Amount); });
+    // // Adds the svg canvas`
+    // var svg = d3.select(".graph")
+    //     .append("svg")
+    //     .attr("width", width + margin.left + margin.right)
+    //     .attr("height", height + margin.top + margin.bottom)
+    //     .append("g")
+    //     .attr("transform",
+    //     "translate(" + margin.left + "," + margin.top + ")");
+    // // Get the data
+    //     // d3.json(window.location.origin + "/userInfo", function(error, data) {
+    //     var data = [{ 'Amount': 1000, 'createdAt': '2017-10-03T12:00:00.000Z' },
+    //                 { 'Amount': 100, 'createdAt': '2017-10-22T12:00:00.000Z' }];
+    //     console.log(data)
+    //     data.forEach(function (d) {
+    //         d.createdAt = parseDate(d.createdAt);
+    //         d.Amount = +d.Amount;
+    //     });
+    //     // Scale the range of the data
+    //     x.domain(d3.extent(data, function (d) { return d.createdAt; }));
+    //     y.domain([0, d3.max(data, function (d) { return d.Amount; })]);
+    //     // Add the valueline path.
+    //     svg.append("path")
+    //         .attr("class", "line")
+    //         .attr("d", valueline(data));
+    //     // Add the X Axis
+    //     svg.append("g")
+    //         .attr("class", "x axis")
+    //         .attr("transform", "translate(0," + height + ")")
+    //         .call(xAxis);
+    //     // Add the Y Axis
+    //     svg.append("g")
+    //         .attr("class", "y axis")
+    //         .call(yAxis);
+    // });
 </script>
