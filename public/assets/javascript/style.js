@@ -28,7 +28,9 @@ function openTab(tabName, tabCont, elmnt, color) {
 document.getElementById("defaultOpen").click();
 
 
-
+$(".modalSubmit").on("click", function() {
+    modal.style.display="none";
+});
 
 $(".modalButton").on("click", function () {
     modal.style.display = "block";

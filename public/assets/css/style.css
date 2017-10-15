@@ -1,8 +1,3 @@
-* {
-    box-sizing: border-box;
-    /*background: orange;*/
-}
-
 .container {
     max-width: 75%;
     margin: auto;
@@ -35,6 +30,12 @@
     background-color: #777777;
     cursor: pointer;
 }
+.logBox {
+    float: right;
+    position: relative;
+    top: 22px;
+    right :20px;
+}
 
 h1 {
     text-align: center;
@@ -59,172 +60,20 @@ body {
     font-family: "helvetica";
     background-color: #a09b9b;
 }
-
-.switch {
-    position: relative;
-    width: 90px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
-.switch-checkbox {
-    display: none;
-}
-
-.switch-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid #FFFFFF;
-    border-radius: 20px;
-}
-
-.switch-inner {
-    display: block;
-    width: 200%;
-    margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
-}
-
-.switch-inner:before,
-.switch-inner:after {
-    display: block;
-    float: left;
-    width: 50%;
-    height: 30px;
-    padding: 0;
-    line-height: 30px;
-    font-size: 24px;
-    color: white;
-    font-family: "Helvetica";
-    font-weight: bold;
-    box-sizing: border-box;
-}
-
-.switch-inner:before {
-    content: " +";
-    padding-left: 10px;
-    background-color: #34C247;
-    color: #FFFFFF;
-}
-
-.switch-inner:after {
-    content: "- ";
-    padding-right: 10px;
-    background-color: #F51B47;
-    color: #FFFFFF;
-    text-align: right;
-}
-
-.switch-switch {
-    display: block;
-    width: 18px;
-    margin: 6px;
-    background: #FFFFFF;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 56px;
-    border: 2px solid #FFFFFF;
-    border-radius: 20px;
-    transition: all 0.3s ease-in 0s;
-}
-
-.switch-checkbox:checked+.switch-label .switch-inner {
-    margin-left: 0;
-}
-
-.switch-checkbox:checked+.switch-label .switch-switch {
-    right: 0px;
-}
-
-.tablink {
-    background-color: #666666;
-    color: white;
-    float: left;
-    border: none;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-}
-
-.tablink:hover {
-    background-color: #777777;
-}
-
-.tabcontent {
-    padding: 50px;
-    color: white;
-    text-align: center;
-  
-}
-
-.logBox {
-    float: right;
-    position: relative;
-    top: -25px;
-}
-
-input[type=text] {
-    border: none;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    border-radius: 20px;
-}
-
-select {
-    border-radius: 20px;
-    box-sizing: border-box;
-    padding: 9px 10px;
-}
-select:hover {
-    cursor: pointer;
-}
-.modalSubmit {
-    border-radius: 20px;
-    border: none;
-    padding: 9px 20px;
-    background-color: #666666;
-    color: white;
-}
-.modalButton {
-    border-radius: 20px;
-    border: none;
-    padding: 9px 20px;
-    background-color: #666666;
-    color: white;
-}
-
-.modalSubmit:hover {
-    background-color: #777777;
-    cursor: pointer;
-}
-.modalButton:hover {
-    cursor: pointer;
-    background-color: #777777;
-}
-
-.moditem {
-    float: left;
-    margin-left: 5%;
-    
+.bodywrap {
+    width: 75%;
+    margin: auto;
 }
 #indexSign {
-    position: absolute;
-    top: 20px;
-    width:15%;
+    position: relative;
+    float:left;
+    top: 13px;
+    left :20px;
 }
 #loginSign {
 
 }
-.abcRioButtonContents {
-    font-size: 24px;
-}
+
 .abcRioButton {
     border-radius: 20px;
     margin: auto;
@@ -244,7 +93,7 @@ a:link,
 a:visited {
     background-color: #666666;
     color: white;
-    padding: 10px 20px;
+    padding: 9px 30px;
     border-radius: 20px;
     text-align: center;
 }
@@ -253,6 +102,170 @@ a:hover {
     background-color: #777777;
     cursor: pointer;
 }
+
+.tablink {
+    background-color: #666666;
+    color: white;
+    float: left;
+    border: none;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+}
+
+.tablink:hover {
+    background-color: #777777;
+}
+
+.tabcontent {
+    padding: 50px;
+    color: white;
+    text-align: center;
+  
+}
+
+input[type=text] {
+    border: none;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+select {
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 9px 10px;
+}
+select:hover {
+    cursor: pointer;
+}
+
+.modalButton {
+    border-radius: 20px;
+    border: none;
+    padding: 9px 20px;
+    background-color: #666666;
+    color: white;
+}
+
+.modalButton:hover {
+    cursor: pointer;
+    background-color: #777777;
+}
+.modContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 25px;
+}
+.moditem {
+ margin: auto;
+}
+.amount {
+width: 20%;
+
+}
+#drop {
+  width: 10%;
+}
+
+.description {
+  width: 20%;
+}
+
+
+.switch {
+    position: relative;
+    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    width: 15%;
+}
+.switch-checkbox {
+    display: none;
+}
+.switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+}
+.switch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.switch-inner:before,
+.switch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 24px;
+    color: white;
+    font-family: "Helvetica";
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.switch-inner:before {
+    content: " +";
+    padding-left: 10px;
+    background-color: #34C247;
+    color: #FFFFFF;
+}
+.switch-inner:after {
+    content: "- ";
+    padding-right: 10px;
+    background-color: #F51B47;
+    color: #FFFFFF;
+    text-align: right;
+}
+.switch-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 8vw;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.switch-checkbox:checked+.switch-label .switch-inner {
+    margin-left: 0;
+}
+
+.switch-checkbox:checked+.switch-label .switch-switch {
+    right: 0px;
+}
+.modalSubmit {
+    border-radius: 20px;
+    border: none;
+    padding: 9px 20px;
+    background-color: #666666;
+    color: white;
+    width: 10%;
+    font-size: 1.5vw;
+    text-align: center;
+  
+}
+.modalSubmit:hover {
+    background-color: #777777;
+    cursor: pointer;
+}
+
 .closeModal {
     color: white;
     font-size: 24px;
@@ -260,9 +273,8 @@ a:hover {
 }
 .closeModal:hover {
     cursor: pointer;
-   
-    
 }
+
 #modal {
     display: none;
     position: fixed;
@@ -292,4 +304,7 @@ a:hover {
     left: 15%;
     justify-content: center;
     border-radius: 15px;
+}
+.transTable {
+    width: 100%;
 }
