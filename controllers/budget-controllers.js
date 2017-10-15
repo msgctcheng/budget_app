@@ -33,17 +33,17 @@ router.post("/login/verify", function(req, res) {
             var payload = login.getPayload();
             var userid = payload['sub'];
             payload.valid = true;
-            console.log('email', payload.email);
 
             db.User.find({
                 where: {
-                    googleId : payload.email
+                    googleId: payload.email
                 }
             }).then(function(dbUser) {
                 if (dbUser === null) {
                     res.json(false);
                 } else {
                     res.json(payload);
+                    // check here for if unexpected error with db 
                 }
             });
         });
@@ -69,38 +69,31 @@ router.post("/addUser", function(req, res) {
     res.json(true);
 });
 
-router.get("/userInfo", function(req, res) {
-    db.Transactions.findAll({
-            attributes: ['Amount', 'createdAt'],
+router.post("/userInfo", function(req, res) {
+
+    db.User.find({
             where: {
-                UserId: 20
+                googleId: req.body.email
             }
         })
         .then(function(data) {
-            // console.log('data: ', data);
-            var userData = [];
-            for (i in data) {
-                console.log(data[i].dataValues);
-                userData.push(data[i].dataValues)
-            }
 
-           //  userData = [{
-           //     date: "2017-10-15T12:00:00.000Z",
-           //     close: 58.13
-           // },{
-           //      date: "2017-04-01T12:00:00.000Z",
-           //      close: 53.98
-           //  }];
-            console.log(userData);
-
-            res.json(userData);
-
+            db.Transactions.findAll({
+                attributes: ["Amount", "createdAt"],
+                where: {
+                    UserId: data.dataValues.id
+                }
+            }).then(function(transData) {
+                var userData = [];
+                for (i in transData) {
+                    userData.push(transData[i].dataValues)
+                }
+                res.json(userData);
+            });
         });
 });
 
-router.get("/data.csv", function(req, res) {
-    res.sendFile(path.join(__dirname, "data.csv"));
-});
+
 
 router.get("/api/transactions", function(req, res) {
     db.Transactions.findAll({})
