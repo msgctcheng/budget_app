@@ -63,7 +63,7 @@ body {
 }
 
 .bodywrap {
-    width: 75%;
+    width: 85%;
     margin: auto;
     
 }
@@ -123,6 +123,7 @@ a:hover {
 .headcontent {
     animation: fadeIn 0.8s;
 }
+
 .tablink {
     background-color: #666666;
     color: white;
@@ -237,7 +238,7 @@ select:hover {
     height: 30px;
     padding: 0;
     line-height: 30px;
-    font-size: 24px;
+    font-size: 1vw;
     color: white;
     font-family: "Helvetica";
     font-weight: bold;
@@ -245,14 +246,14 @@ select:hover {
 }
 
 .switch-inner:before {
-    content: " +";
+    content: " Deposit";
     padding-left: 10px;
     background-color: #34C247;
     color: #FFFFFF;
 }
 
 .switch-inner:after {
-    content: "- ";
+    content: "Expense ";
     padding-right: 10px;
     background-color: #F51B47;
     color: #FFFFFF;
@@ -288,7 +289,7 @@ select:hover {
     background-color: #666666;
     color: white;
     width: 10%;
-    font-size: 1.5vw;
+    font-size: 1vw;
     text-align: center;
 }
 
@@ -392,4 +393,7 @@ th, td {
 }
 .logCard {
     background-color: #0D6BFF;
+}
+svg {
+    width: 90%;
 }
