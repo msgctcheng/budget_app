@@ -141,6 +141,41 @@
         // 2. so that we can use the google-auth-library to...
         // 3. verify whether the info is valid or if a malicious user is spoofing a Google account.
         var id_token = user.getAuthResponse().id_token;
+        $(".modalSubmit").on("click", function(event) {
+          event.preventDefault();
+          if ($("input[type=checkbox").prop("checked")) {
+             // Make a newTransaction object
+            var newTransaction = {
+              Balance: true,
+              Amount: $(".amount").val().trim(),
+              Category: $(".dropCont").val().trim(),
+              Description: $(".description").val().trim(),
+              googleId: profile.getEmail()
+            };
+          } else {
+            // Make a newTransaction object
+            var newTransaction = {
+              Balance: false,
+              Amount: $(".amount").val().trim(),
+              Category: $(".dropCont").val().trim(),
+              Description: $(".description").val().trim(),
+              googleId: profile.getEmail()
+            };
+          }
+            $.ajax({
+              type: "POST",
+              url: window.location.origin + "/api/transactions",
+              data: newTransaction
+            }).success(function(response) {
+              console.log(response);
+            });
+        });
+
+  // Empty each input box by replacing the value with an empty string
+    //   $(".amount").val("");
+    //   $(".dropCont").val("");
+    //   $(".description").val("");
+    // });
         $.post('/login/verify', {"idtoken" : id_token})
             .then((response) => {
                 console.log('Response from /api/auth:', response.email);
