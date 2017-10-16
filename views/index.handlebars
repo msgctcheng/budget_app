@@ -181,9 +181,6 @@
             });
         });
         $('.dash').on('click', function() {
-            alert(true);
-            // get
-            // return las 10 for user
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/spending",
@@ -199,14 +196,15 @@
                                 url: window.location.origin + "/userInfo",
                                 data: {email : response.email}
                             }).success(function(response) {
+                                console.log('submit on graph data', response);
                                 graph(response);
                             });
                         } else {
                             console.error(response.error);
                         }
                 });
-                $('#balance').text(recentBalance);
-                $('.tableBody').empty().append(html2);
+                // $('#balance').text(recentBalance);
+                // $('.tableBody').empty().append(html2);
             });
         });
 
@@ -236,7 +234,7 @@
                     html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
                             `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
                 }
-                $('#balance').text(recentBalance);
+                // $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html2);
             });
         });
@@ -250,16 +248,17 @@
                         type: "POST",
                         url: window.location.origin + "/userInfo",
                         data: {email : response.email}
-                    }).success(function(response) {
-                        graph(response);
+                    }).success(function(res) {
+                        console.log('graph data', res);
+                        graph(res);
                     });
                 } else {
-                    console.error(response.error);
+                    console.error(res.error);
                 }
         });
     }
 
-    function graph(response) {
+    function graph(resData) {
     // Set the dimensions of the canvas / graph
     var margin = { top: 30, right: 20, bottom: 30, left: 50 },
                             width = 600 - margin.left - margin.right,
@@ -279,6 +278,7 @@
                             .x(function (d) { return x(d.createdAt); })
                             .y(function (d) { return y(d.Amount); });
                         // Adds the svg canvas`
+                        $('.graph').empty();
                         var svg = d3.select(".graph")
                             .append("svg")
                             .attr("width", width + margin.left + margin.right)
@@ -288,7 +288,7 @@
                             "translate(" + margin.left + "," + margin.top + ")");
                         // Get the data
                             // d3.json(window.location.origin + "/userInfo", function(error, data) {
-                            var data = response;
+                            var data = resData;
                             // console.log(data)
                             data.forEach(function (d) {
                                 d.createdAt = parseDate(d.createdAt);

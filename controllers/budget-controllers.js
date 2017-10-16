@@ -84,7 +84,8 @@ router.post("/userInfo", function(req, res) {
                 attributes: ["Amount", "createdAt"],
                 where: {
                     UserId: data.dataValues.id
-                }
+                },
+                limit: 10
             }).then(function(transData) {
                 var userData = [];
                 for (i in transData) {
