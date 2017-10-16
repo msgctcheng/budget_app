@@ -57,9 +57,9 @@ D3(Data Driven Document)
 
 #### Authors:
 
-Phil Dixon
-Chris Cheng
-Elilzabeth Prieto
+* Phil Dixon
+* Chris Cheng
+* Elilzabeth Prieto
 
 -----------------------------------------
 
