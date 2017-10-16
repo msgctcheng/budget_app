@@ -184,15 +184,8 @@
                 $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html);
             });
-        });
-        $('.dash').on('click', function() {
-            $.ajax({
-                type: "POST",
-                url: window.location.origin + "/spending",
-                data: {email : profile.getEmail()}
-            }).success(function(response) {
-                
-                $.post('/login/verify', {"idtoken" : id_token})
+
+            $.post('/login/verify', {"idtoken" : id_token})
                     .then((response) => {
                         // console.log('Response from /api/auth:', response.email);                
                         if (response.valid) {
@@ -209,10 +202,35 @@
                             console.error(response.error);
                         }
                 });
-                // $('#balance').text(recentBalance);
-                // $('.tableBody').empty().append(html2);
-            });
         });
+        // $('.dash').on('click', function() {
+        //     $.ajax({
+        //         type: "POST",
+        //         url: window.location.origin + "/spending",
+        //         data: {email : profile.getEmail()}
+        //     }).success(function(response) {
+                
+        //         $.post('/login/verify', {"idtoken" : id_token})
+        //             .then((response) => {
+        //                 // console.log('Response from /api/auth:', response.email);                
+        //                 if (response.valid) {
+        //                     $.ajax({
+        //                         type: "POST",
+        //                         url: window.location.origin + "/userInfo",
+        //                         data: {email : response.email}
+        //                     }).success(function(response) {
+        //                         // console.log('submit on graph data', response);
+
+        //                         graph(response);
+        //                     });
+        //                 } else {
+        //                     console.error(response.error);
+        //                 }
+        //         });
+        //         // $('#balance').text(recentBalance);
+        //         // $('.tableBody').empty().append(html2);
+        //     });
+        // });
 
 
         $('#spending').on('click', function () {
