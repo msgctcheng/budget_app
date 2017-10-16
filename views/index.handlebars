@@ -18,7 +18,7 @@
     </div>
 
     <button class="tablink" onclick="openTab('dashboard_top', 'dashboard_bot', this, '#0D6BFF')" id="defaultOpen">Dashboard</button>
-    <button class="tablink" onclick="openTab('spending_top', 'spending_bot', this, '#28D65C')">Spending</button>
+    <button id="spending" class="tablink" onclick="openTab('spending_top', 'spending_bot', this, '#28D65C')">Spending</button>
 
     <div id="dashboard_bot" class="tabcontent tabBody">
         <div class="dashboardCard card">
@@ -79,6 +79,7 @@
     </div>
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script>
     function gapiInit() {
     // Load the auth2 module into the Google API object.
@@ -149,7 +150,6 @@
           }
 
             $(".amount").val("");
-            // $(".dropCont").val("");
             $(".description").val("");
 
             $.ajax({
@@ -157,7 +157,6 @@
               url: window.location.origin + "/api/transactions",
               data: newTransaction
             }).success(function(response) {
-                console.log(response);
                 var html = "";
                 for(i in response) {
                     html += `<tr><td>${response[i].createdAt}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
@@ -168,11 +167,27 @@
             });
         });
 
-  // Empty each input box by replacing the value with an empty string
-    //   $(".amount").val("");
-    //   $(".dropCont").val("");
-    //   $(".description").val("");
-    // });
+
+        $('#spending').on('click', function() {
+            // get
+            // return las 10 for user
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/spending",
+                data: {email : profile.getEmail()}
+            }).success(function(response) {
+                var html2 = "";
+                for(i in response) {
+                    var dateMoment = moment(response[i].createdAt).format('M-DD-YYYY');
+                    html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                            `<td>$${response[i].Amount}</td></tr>`;
+                }
+
+                $('.tableBody').empty().append(html2);
+            });
+        });
+
+
         $.post('/login/verify', {"idtoken" : id_token})
             .then((response) => {
                 console.log('Response from /api/auth:', response.email);

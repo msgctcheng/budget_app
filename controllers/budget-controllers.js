@@ -96,12 +96,31 @@ router.post("/userInfo", function(req, res) {
 
 
 
-router.get("/api/transactions", function(req, res) {
-    // db.Transactions.findAll({})
-    //     .then(function(dbTrans) {
-    //         res.json(dbTrans);
-    //     });
-    console.log(req.body.email);
+router.post("/spending", function(req, res) {
+    db.User.findOne({
+            where: {
+                googleId: req.body.email
+            }
+        })
+        .then(function(dbReturn) {
+            db.Transactions.findAll({
+                    order: [
+                        ["createdAt", "DESC"]
+                    ],
+                    where: {
+                        UserId: dbReturn.dataValues.id
+                    },
+                    limit: 10
+                })
+                .then(function(nest) {
+                    var allTrans = [];
+                    for (i in nest) {
+                        allTrans.push(nest[i].dataValues)
+                    }
+                    console.log("Transactions", allTrans);
+                    res.json(allTrans);
+                });
+        });
 });
 
 router.post("/api/transactions", function(req, res) {
@@ -126,7 +145,7 @@ router.post("/api/transactions", function(req, res) {
                     } else if (req.body.Balance == "false") {
                         var balance = parseFloat(order.dataValues.Balance) - parseFloat(req.body.Amount);
                     }
-                    
+
                     db.Transactions.upsert({
                             Amount: parseFloat(req.body.Amount),
                             Balance: balance,
@@ -137,9 +156,9 @@ router.post("/api/transactions", function(req, res) {
                         .then(function(dbTrans) {
 
                             db.User.findOne({
-                              where: {
-                                  googleId: req.body.googleId
-                              }
+                                    where: {
+                                        googleId: req.body.googleId
+                                    }
                                 })
                                 .then(function(dbReturn) {
                                     db.Transactions.findAll({
@@ -152,13 +171,13 @@ router.post("/api/transactions", function(req, res) {
                                             limit: 10
                                         })
                                         .then(function(nest) {
-                                        	var allTrans = [];
-                                        	for (i in nest) {
-                                        		allTrans.push(nest[i].dataValues)
-                                        	}
-                                        	console.log("Transactions", allTrans);
-                                        	res.json(allTrans);
-                                        })
+                                            var allTrans = [];
+                                            for (i in nest) {
+                                                allTrans.push(nest[i].dataValues)
+                                            }
+                                            console.log("Transactions", allTrans);
+                                            res.json(allTrans);
+                                        });
                                 });
                         });
                 });
