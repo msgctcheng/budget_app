@@ -81,7 +81,8 @@ router.post("/userInfo", function(req, res) {
         .then(function(data) {
 
             db.Transactions.findAll({
-                attributes: ["Amount", "createdAt"],
+                order: [["createdAt", "DESC"]],
+                attributes: ["Amount", "Balance", "createdAt"],
                 where: {
                     UserId: data.dataValues.id
                 },
@@ -91,6 +92,7 @@ router.post("/userInfo", function(req, res) {
                 for (i in transData) {
                     userData.push(transData[i].dataValues)
                 }
+                console.log(userData);
                 res.json(userData);
             });
         });
