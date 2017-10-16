@@ -11,8 +11,9 @@
     text-align: center;
     line-height: 30px;
     padding: 50px;
-    margin-top: 15%;
+    position: relative;
     color: white;
+    top: 15vh;
 }
 
 .logBox {
