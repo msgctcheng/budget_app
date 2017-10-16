@@ -29,8 +29,12 @@
 }
 .currentBalance {
     position: relative;
-    border: 1px solid black;
-    width: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    top: 175px;
     
 
 }
@@ -425,16 +429,19 @@ td {
 
 svg {
     width: 90%;
+    margin: auto;
 }
 
 #newSign {
-    position: absolute;
-    top: 25vh;
-    left: 20vw;
+    position: relative;
+    top: 25px;
+    left: 70px;
+    float: left;
 }
 
-#newSignOut {
-    position: absolute;
-    left: 69vw;
-    top: 25vh;
+#newOut {
+    position: relative;
+    top: 32px;
+    float:right;
+    right: 70px
 }
