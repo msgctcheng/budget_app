@@ -181,7 +181,7 @@
                     html += `<tr><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
                         `<td>${signCheck}$${response[i].Amount}</td></tr>`;
                 }
-                $('#balance').text(response.Balance);
+                $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html);
             });
         });
@@ -259,6 +259,7 @@
                         console.log('on login', res);
 
                         graph(res);
+                        $("#balance").text(res[0].Balance);
                     });
                 } else {
                     console.error(res.error);
