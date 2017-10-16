@@ -202,6 +202,7 @@
                                 data: {email : response.email}
                             }).success(function(response) {
                                 // console.log('submit on graph data', response);
+
                                 graph(response);
                             });
                         } else {
@@ -254,7 +255,9 @@
                         url: window.location.origin + "/userInfo",
                         data: {email : response.email}
                     }).success(function(res) {
+
                         console.log('on login', res);
+
                         graph(res);
                     });
                 } else {
@@ -264,7 +267,7 @@
     }
 
     function graph(resData) {
-        console.log('resData', resData);
+
     // Set the dimensions of the canvas / graph
     var margin = { top: 30, right: 20, bottom: 30, left: 50 },
                             width = 600 - margin.left - margin.right,
