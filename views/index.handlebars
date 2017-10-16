@@ -193,14 +193,15 @@
                 
                 $.post('/login/verify', {"idtoken" : id_token})
                     .then((response) => {
-                        console.log('Response from /api/auth:', response.email);                
+                        // console.log('Response from /api/auth:', response.email);                
                         if (response.valid) {
                             $.ajax({
                                 type: "POST",
                                 url: window.location.origin + "/userInfo",
                                 data: {email : response.email}
                             }).success(function(response) {
-                                console.log('submit on graph data', response);
+                                // console.log('submit on graph data', response);
+
                                 graph(response);
                             });
                         } else {
@@ -253,7 +254,9 @@
                         url: window.location.origin + "/userInfo",
                         data: {email : response.email}
                     }).success(function(res) {
-                        console.log('graph data', res);
+
+                        console.log('on login', res);
+
                         graph(res);
                     });
                 } else {
@@ -281,7 +284,7 @@
                         // Define the line
                         var valueline = d3.svg.line()
                             .x(function (d) { return x(d.createdAt); })
-                            .y(function (d) { return y(d.Amount); });
+                            .y(function (d) { return y(d.Balance); });
                         // Adds the svg canvas`
                         $('.graph').empty();
                         var svg = d3.select(".graph")
@@ -295,14 +298,13 @@
 
                             // d3.json(window.location.origin + "/userInfo", function(error, data) {
                             var data = resData;
-                            // console.log(data)
                             data.forEach(function (d) {
                                 d.createdAt = parseDate(d.createdAt);
-                                d.Amount = +d.Amount;
+                                d.Balance = +d.Balance;
                             });
                             // Scale the range of the data
                             x.domain(d3.extent(data, function (d) { return d.createdAt; }));
-                            y.domain([0, d3.max(data, function (d) { return d.Amount; })]);
+                            y.domain([0, d3.max(data, function (d) { return d.Balance; })]);
                             // Add the valueline path.
                             svg.append("path")
                                 .attr("class", "line")
