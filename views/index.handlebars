@@ -3,11 +3,15 @@
     <div class="logBox">
         <a class="signOut" href="#" onclick="signOut();">Sign out</a>
     </div>
-    <div><p>Current Balance: <span id="balance"></span></p></div>
+    <div class="currentBalance">
+        <p>Current Balance:
+            <span id="balance"></span>
+        </p>
+    </div>
     <div id="dashboard_top" class="tabcontent tabheader">
         <div class="headcontent">
             <h2>Dashboard Hello</h2>
-            <p>User Dashboard</p> 
+            <p>User Dashboard</p>
         </div>
     </div>
 
@@ -25,7 +29,7 @@
         <div class="dashboardCard card">
             <h3>Dashboard</h3>
             <p>User Dashboard</p>
-            <div class="graph" ></div>
+            <div class="graph"></div>
             <button class="modalButton">Add Transaction</button>
         </div>
     </div>
@@ -42,7 +46,7 @@
                         <th>Amount</th>
                     </thead>
                     <tbody class="tableBody">
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -83,8 +87,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script>
     function gapiInit() {
-    // Load the auth2 module into the Google API object.
-        gapi.load('auth2', function() {
+        // Load the auth2 module into the Google API object.
+        gapi.load('auth2', function () {
 
             console.log('Loaded auth2');
             let googleUser;
@@ -102,7 +106,7 @@
                 if (googleAuth.isSignedIn.get()) {
                     console.log('User was logged in on page load.')
                     validateUser(googleAuth.currentUser.get());
-                } 
+                }
 
                 // Listen for changes in the user's signed-in status.
                 googleAuth.isSignedIn.listen((signedIn) => {
@@ -128,53 +132,53 @@
         // console.log(`ImageUrl: ${profile.getImageUrl()}`);
         // console.log("validated");
         var id_token = user.getAuthResponse().id_token;
-        $(".modalSubmit").on("click", function(event) {
-          event.preventDefault();
-          if ($("input[type=checkbox").prop("checked")) {
-             // Make a newTransaction object
-            var newTransaction = {
-              Balance: true,
-              Amount: $(".amount").val().trim(),
-              Category: $(".dropCont").val().trim(),
-              Description: $(".description").val().trim(),
-              googleId: profile.getEmail()
-            };
-          } else {
-            // Make a newTransaction object
-            var newTransaction = {
-              Balance: false,
-              Amount: $(".amount").val().trim(),
-              Category: $(".dropCont").val().trim(),
-              Description: $(".description").val().trim(),
-              googleId: profile.getEmail()
-            };
-          }
+        $(".modalSubmit").on("click", function (event) {
+            event.preventDefault();
+            if ($("input[type=checkbox").prop("checked")) {
+                // Make a newTransaction object
+                var newTransaction = {
+                    Balance: true,
+                    Amount: $(".amount").val().trim(),
+                    Category: $(".dropCont").val().trim(),
+                    Description: $(".description").val().trim(),
+                    googleId: profile.getEmail()
+                };
+            } else {
+                // Make a newTransaction object
+                var newTransaction = {
+                    Balance: false,
+                    Amount: $(".amount").val().trim(),
+                    Category: $(".dropCont").val().trim(),
+                    Description: $(".description").val().trim(),
+                    googleId: profile.getEmail()
+                };
+            }
 
             $(".amount").val("");
             $(".description").val("");
 
             $.ajax({
-              type: "POST",
-              url: window.location.origin + "/api/transactions",
-              data: newTransaction
-            }).success(function(response) {
-                
+                type: "POST",
+                url: window.location.origin + "/api/transactions",
+                data: newTransaction
+            }).success(function (response) {
+
                 var html = "";
-                for(var i = 0; i < response.length; i++) {
+                for (var i = 0; i < response.length; i++) {
                     if (i === 0) {
                         var recentBalance = response[i].Balance;
                     }
 
                     var signCheck;
                     if (response[i].Sign === true) {
-                        signCheck="+";
+                        signCheck = "+";
                     } else if (response[i].Sign === false) {
-                        signCheck="-";
+                        signCheck = "-";
                     }
 
                     var dateMoment2 = moment(response[i].createdAt).format('M-DD-YYYY');
                     html += `<tr><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
-                            `<td>${signCheck}$${response[i].Amount}</td></tr>`;
+                        `<td>${signCheck}$${response[i].Amount}</td></tr>`;
                 }
                 $('#balance').text(response.Balance);
                 $('.tableBody').empty().append(html);
@@ -211,30 +215,30 @@
         });
 
 
-        $('#spending').on('click', function() {
+        $('#spending').on('click', function () {
             // get
             // return las 10 for user
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/spending",
-                data: {email : profile.getEmail()}
-            }).success(function(response) {
-                
+                data: { email: profile.getEmail() }
+            }).success(function (response) {
+
                 var html2 = "";
-                for(var i = 0; i < response.length; i++) {
+                for (var i = 0; i < response.length; i++) {
                     if (i === 0) {
                         var recentBalance = response[i].Balance;
                     }
 
                     var signCheck2;
                     if (response[i].Sign === true) {
-                        signCheck2="+";
-                    } else if (response[i].Sign === false)  {
-                        signCheck2="-";
+                        signCheck2 = "+";
+                    } else if (response[i].Sign === false) {
+                        signCheck2 = "-";
                     }
                     var dateMoment = moment(response[i].createdAt).format('M-DD-YYYY');
                     html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
-                            `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
+                        `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
                 }
                 $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html2);
@@ -242,7 +246,7 @@
         });
 
 
-        $.post('/login/verify', {"idtoken" : id_token})
+        $.post('/login/verify', { "idtoken": id_token })
             .then((response) => {
                 console.log('Response from /api/auth:', response.email);                
                 if (response.valid) {
@@ -258,6 +262,7 @@
                 }
         });
     }
+
 
     function graph(response) {
     // Set the dimensions of the canvas / graph
@@ -287,6 +292,7 @@
                             .attr("transform",
                             "translate(" + margin.left + "," + margin.top + ")");
                         // Get the data
+
                             // d3.json(window.location.origin + "/userInfo", function(error, data) {
                             var data = response;
                             // console.log(data)
