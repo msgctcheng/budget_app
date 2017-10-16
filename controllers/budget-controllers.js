@@ -105,6 +105,7 @@ router.get("/api/transactions", function(req, res) {
 });
 
 router.post("/api/transactions", function(req, res) {
+
     db.User.findOne({
             where: {
                 googleId: req.body.googleId
@@ -125,6 +126,7 @@ router.post("/api/transactions", function(req, res) {
                     } else if (req.body.Balance == "false") {
                         var balance = parseFloat(order.dataValues.Balance) - parseFloat(req.body.Amount);
                     }
+                    
                     db.Transactions.upsert({
                             Amount: parseFloat(req.body.Amount),
                             Balance: balance,

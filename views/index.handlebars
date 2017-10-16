@@ -125,9 +125,6 @@
         // console.log(`Email: ${profile.getEmail()}`);
         // console.log(`ImageUrl: ${profile.getImageUrl()}`);
         // console.log("validated");
-        // 1. Send the token to the backend...
-        // 2. so that we can use the google-auth-library to...
-        // 3. verify whether the info is valid or if a malicious user is spoofing a Google account.
         var id_token = user.getAuthResponse().id_token;
         $(".modalSubmit").on("click", function(event) {
           event.preventDefault();
@@ -150,6 +147,11 @@
               googleId: profile.getEmail()
             };
           }
+
+            $(".amount").val("");
+            // $(".dropCont").val("");
+            $(".description").val("");
+
             $.ajax({
               type: "POST",
               url: window.location.origin + "/api/transactions",
@@ -159,9 +161,10 @@
                 var html = "";
                 for(i in response) {
                     html += `<tr><td>${response[i].createdAt}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
-                            `<td>${response[i].Amount}</td></tr>`;
+                            `<td>$${response[i].Amount}</td></tr>`;
                 }
-                $('.tableBody').append(html);
+
+                $('.tableBody').empty().append(html);
             });
         });
 
