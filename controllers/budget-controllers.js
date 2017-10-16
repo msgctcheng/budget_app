@@ -61,6 +61,7 @@ router.post("/addUser", function(req, res) {
     }).then(function(data) {
         db.Transactions.create({
             Amount: req.body.amount,
+            Sign: true,
             Balance: req.body.amount,
             Category: "Other",
             Description: "Initial Balance",
@@ -117,7 +118,6 @@ router.post("/spending", function(req, res) {
                     for (i in nest) {
                         allTrans.push(nest[i].dataValues)
                     }
-                    console.log("Transactions", allTrans);
                     res.json(allTrans);
                 });
         });
@@ -142,13 +142,16 @@ router.post("/api/transactions", function(req, res) {
                 .then(function(order) {
                     if (req.body.Balance == "true") {
                         var balance = parseFloat(req.body.Amount) + parseFloat(order.dataValues.Balance);
+                        var sign = true;
                     } else if (req.body.Balance == "false") {
                         var balance = parseFloat(order.dataValues.Balance) - parseFloat(req.body.Amount);
+                        var sign = false;
                     }
-
+                    console.log(order);
                     db.Transactions.upsert({
                             Amount: parseFloat(req.body.Amount),
-                            Balance: balance,
+                            Sign: sign,
+                            Balance: parseFloat(balance),
                             Category: req.body.Category,
                             Description: req.body.Description,
                             UserId: order.dataValues.UserId
