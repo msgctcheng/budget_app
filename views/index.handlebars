@@ -3,6 +3,7 @@
     <div class="logBox">
         <a class="signOut" href="#" onclick="signOut();">Sign out</a>
     </div>
+    <div><p>Current Balance: <span id="balance"></span></p></div>
     <div id="dashboard_top" class="tabcontent tabheader">
         <div class="headcontent">
             <h2>Dashboard Hello</h2>
@@ -157,12 +158,25 @@
               url: window.location.origin + "/api/transactions",
               data: newTransaction
             }).success(function(response) {
+                
                 var html = "";
-                for(i in response) {
-                    html += `<tr><td>${response[i].createdAt}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
-                            `<td>$${response[i].Amount}</td></tr>`;
-                }
+                for(var i = 0; i < response.length; i++) {
+                    if (i === 0) {
+                        var recentBalance = response[i].Balance;
+                    }
 
+                    var signCheck;
+                    if (response[i].Sign === true) {
+                        signCheck="+";
+                    } else if (response[i].Sign === false) {
+                        signCheck="-";
+                    }
+
+                    var dateMoment2 = moment(response[i].createdAt).format('M-DD-YYYY');
+                    html += `<tr><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                            `<td>${signCheck}$${response[i].Amount}</td></tr>`;
+                }
+                $('#balance').text(response.Balance);
                 $('.tableBody').empty().append(html);
             });
         });
@@ -176,13 +190,24 @@
                 url: window.location.origin + "/spending",
                 data: {email : profile.getEmail()}
             }).success(function(response) {
+                
                 var html2 = "";
-                for(i in response) {
+                for(var i = 0; i < response.length; i++) {
+                    if (i === 0) {
+                        var recentBalance = response[i].Balance;
+                    }
+
+                    var signCheck2;
+                    if (response[i].Sign === true) {
+                        signCheck2="+";
+                    } else if (response[i].Sign === false)  {
+                        signCheck2="-";
+                    }
                     var dateMoment = moment(response[i].createdAt).format('M-DD-YYYY');
                     html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
-                            `<td>$${response[i].Amount}</td></tr>`;
+                            `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
                 }
-
+                $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html2);
             });
         });
