@@ -59,7 +59,7 @@ path {
 
 body {
     font-family: "helvetica";
-    background-color: #67E0C8;
+    background-color: white;
 }
 
 .bodywrap {
@@ -444,4 +444,18 @@ svg {
     top: 32px;
     float:right;
     right: 150px;
+}
+
+.transTable {
+    border: 1px solid white;
+    background-color: rgb(37, 216, 126);
+
+}
+.transTable * {
+    border: 1px solid white;
+
+}
+.transTable th {
+    text-decoration: underline;
+    background-color: #777777;
 }
