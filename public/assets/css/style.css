@@ -18,7 +18,7 @@
 .logBox {
     float: right;
     position: relative;
-    top: 22px;
+    top: 72px;
     right: 20px;
 }
 
@@ -27,7 +27,13 @@
     font-size: 14px;
     text-decoration: none;
 }
+.currentBalance {
+    position: relative;
+    border: 1px solid black;
+    width: 50%;
+    
 
+}
 h1 {
     text-align: center;
     margin: auto;
@@ -60,7 +66,7 @@ body {
 #indexSign {
     position: relative;
     float: left;
-    top: 13px;
+    top: 63px;
     left: 20px;
 }
 
