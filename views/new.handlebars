@@ -1,18 +1,19 @@
-<div class="newBox">
-    <h3>New User</h3>
-    User Name:
-    <br>
-    <input type="text" class="userName">
-    <br> Initial Budget:
-    <br>
-    <input type="text" class="firstBudget">
-    <br>
-    <select class="budgetType">
-        <option value="monthly">Monthly</option>
-        <option value="weekly">Weekly</option>
-    </select>
-    <br>
-    <button type="button" class="newSubmit">Submit</button>
+
+<div class="newWrapper">
+    <div class="g-signin2" data-onsuccess="onSignIn" id="newSign"></div>
+            <a id="newSignOut" href="#" onclick="signOut();">Sign out</a>
+    <div class="newBox">
+        <h2>Enter Your Name and Budget!</h2>
+        <div class="card newCard">
+            User Name:
+            <br>
+            <input type="text" class="userName">
+            <br> Initial Budget:
+            <br>
+            <input type="text" class="firstBudget">
+            <br>
+            <button type="button" class="newSubmit">Submit</button>
+        </div>
+    </div>
+
 </div>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <a href="#" onclick="signOut();">Sign out</a>

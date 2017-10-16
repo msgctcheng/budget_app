@@ -1,7 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var Transactions = sequelize.define("Transactions", {
+    Sign: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
     Balance: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(15,2),
       allowNull: false,
       validate: {
         isNumeric: true,
@@ -9,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     Amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(15,2),
       allowNull: false,
       validate: {
         isNumeric: true,

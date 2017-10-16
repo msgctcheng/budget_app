@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require("../models");
 var path = require("path");
 var GoogleAuth = require('google-auth-library');
+var sequelize = require("sequelize");
 
 router.get("/", function(req, res) {
     // db.User.find()
@@ -33,17 +34,17 @@ router.post("/login/verify", function(req, res) {
             var payload = login.getPayload();
             var userid = payload['sub'];
             payload.valid = true;
-            console.log('email', payload.email);
 
             db.User.find({
                 where: {
-                    googleId : payload.email
+                    googleId: payload.email
                 }
             }).then(function(dbUser) {
                 if (dbUser === null) {
                     res.json(false);
                 } else {
                     res.json(payload);
+                    // check here for if unexpected error with db 
                 }
             });
         });
@@ -60,6 +61,7 @@ router.post("/addUser", function(req, res) {
     }).then(function(data) {
         db.Transactions.create({
             Amount: req.body.amount,
+            Sign: true,
             Balance: req.body.amount,
             Category: "Other",
             Description: "Initial Balance",
@@ -69,42 +71,122 @@ router.post("/addUser", function(req, res) {
     res.json(true);
 });
 
-router.get("/userInfo", function(req, res) {
-    db.Transactions.findAll({
-        attributes: ['Amount', 'createdAt'],
-        where : {
-            UserId: 20
-        }
-    })
-    .then(function(data) {
-        console.log('data: ', data);
-        for (i in data) {
-            console.log(data[i].dataValues);
-        }
-    });
+router.post("/userInfo", function(req, res) {
+
+    db.User.find({
+            where: {
+                googleId: req.body.email
+            }
+        })
+        .then(function(data) {
+
+            db.Transactions.findAll({
+                order: [["createdAt", "DESC"]],
+                attributes: ["Amount", "Balance", "createdAt"],
+                where: {
+                    UserId: data.dataValues.id
+                },
+                limit: 10
+            }).then(function(transData) {
+                var userData = [];
+                for (i in transData) {
+                    userData.push(transData[i].dataValues)
+                }
+                console.log(userData);
+                res.json(userData);
+            });
+        });
 });
 
-router.get("/data.csv", function(req, res) {
-    res.sendFile(path.join(__dirname, "data.csv"));
-});
 
-router.get("/api/transactions", function(req, res) {
-    db.Transactions.findAll({})
-        .then(function(dbTrans) {
-            res.json(dbTrans);
+
+router.post("/spending", function(req, res) {
+    db.User.findOne({
+            where: {
+                googleId: req.body.email
+            }
+        })
+        .then(function(dbReturn) {
+            db.Transactions.findAll({
+                    order: [
+                        ["createdAt", "DESC"]
+                    ],
+                    where: {
+                        UserId: dbReturn.dataValues.id
+                    },
+                    limit: 10
+                })
+                .then(function(nest) {
+                    var allTrans = [];
+                    for (i in nest) {
+                        allTrans.push(nest[i].dataValues)
+                    }
+                    res.json(allTrans);
+                });
         });
 });
 
 router.post("/api/transactions", function(req, res) {
-    db.Transactions.create({
-            Balance: req.body.Balance,
-            Amount: req.body.Amount,
-            Description: req.body.Description,
-            Category: req.body.Category,
-            UserId: req.body.UserId
+
+    db.User.findOne({
+            where: {
+                googleId: req.body.googleId
+            }
         })
-        .then(function(dbTrans) {
-            res.json(dbTrans);
+        .then(function(dbUser) {
+            db.Transactions.findOne({
+                    order: [
+                        ["createdAt", "DESC"]
+                    ],
+                    where: {
+                        UserId: dbUser.dataValues.id
+                    }
+                })
+                .then(function(order) {
+                    if (req.body.Balance == "true") {
+                        var balance = parseFloat(req.body.Amount) + parseFloat(order.dataValues.Balance);
+                        var sign = true;
+                    } else if (req.body.Balance == "false") {
+                        var balance = parseFloat(order.dataValues.Balance) - parseFloat(req.body.Amount);
+                        var sign = false;
+                    }
+                    console.log(order);
+                    db.Transactions.upsert({
+                            Amount: parseFloat(req.body.Amount),
+                            Sign: sign,
+                            Balance: parseFloat(balance),
+                            Category: req.body.Category,
+                            Description: req.body.Description,
+                            UserId: order.dataValues.UserId
+                        })
+                        .then(function(dbTrans) {
+
+                            db.User.findOne({
+                                    where: {
+                                        googleId: req.body.googleId
+                                    }
+                                })
+                                .then(function(dbReturn) {
+                                    db.Transactions.findAll({
+                                            order: [
+                                                ["createdAt", "DESC"]
+                                            ],
+                                            where: {
+                                                UserId: dbReturn.dataValues.id
+                                            },
+                                            limit: 10
+                                        })
+                                        .then(function(nest) {
+                                            var allTrans = [];
+                                            for (i in nest) {
+                                                allTrans.push(nest[i].dataValues)
+                                            }
+                                            console.log("Transactions", allTrans);
+                                            res.json(allTrans);
+                                        });
+                                });
+                        });
+                });
         });
 });
 

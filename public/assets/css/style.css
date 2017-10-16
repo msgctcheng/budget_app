@@ -1,41 +1,39 @@
-* {
-    box-sizing: border-box;
-    /*background: orange;*/
-}
-
 .container {
     max-width: 75%;
     margin: auto;
 }
 
 .login_card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: #83E85B;
+    background-color: #28D65C;
     width: 75%;
     margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     line-height: 30px;
     padding: 50px;
-    margin-top: 25%;
+    margin-top: 15%;
     color: white;
 }
 
-.loginBtn {
-    border-radius: 20px;
-    border: none;
-    padding: 10px 20px;
-    background-color: #666666;
-    color: white;
-    font-size: 16px;
-    text-decoration: underline;
-    margin-bottom: 20px;
+.logBox {
+    float: right;
+    position: relative;
+    top: 72px;
+    right: 20px;
 }
 
-.loginBtn:hover {
-    background-color: #777777;
-    cursor: pointer;
+.signOut {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+    font-size: 14px;
+    text-decoration: none;
 }
+.currentBalance {
+    position: relative;
+    border: 1px solid black;
+    width: 50%;
+    
 
+}
 h1 {
     text-align: center;
     margin: auto;
@@ -57,7 +55,166 @@ path {
 
 body {
     font-family: "helvetica";
-    background-color: #a09b9b;
+    background-color: #67E0C8;
+}
+
+.bodywrap {
+    width: 85%;
+    margin: auto;
+}
+
+#indexSign {
+    position: relative;
+    float: left;
+    top: 63px;
+    left: 20px;
+}
+
+#loginSign {
+    margin-bottom: 20px;
+}
+
+button {
+    text-decoration: none;
+}
+
+.newSubmit {
+    border-radius: 20px;
+    border: none;
+    padding: 9px 35px;
+    background-color: #666666;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.newSubmit:hover {
+    background-color: #777777;
+    cursor: pointer;
+}
+
+.abcRioButton {
+    border-radius: 20px;
+    margin: auto;
+    background-color: #666666;
+    color: white;
+    text-align: center;
+}
+
+.abcRioButton:hover {
+    background-color: #777777;
+    cursor: pointer;
+}
+
+a:link,
+a:visited {
+    background-color: #666666;
+    color: white;
+    padding: 9px 32px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #777777;
+    cursor: pointer;
+}
+
+.headcontent {
+    animation: fadeIn 0.8s;
+}
+
+.tablink {
+    background-color: #666666;
+    color: white;
+    float: left;
+    border: none;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+    transition: background-color 0.8s;
+}
+
+.tablink:hover {
+    background-color: #777777;
+}
+
+.tabcontent {
+    padding: 50px;
+    color: white;
+    text-align: center;
+    transition: background-color 2s;
+}
+
+.tabBody {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.tabheader {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+input[type=text] {
+    border: none;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+select {
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 9px 10px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+.modalButton {
+    border-radius: 20px;
+    border: none;
+    padding: 9px 20px;
+    background-color: #666666;
+    color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modalButton:hover {
+    cursor: pointer;
+    background-color: #777777;
+}
+
+.modContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 25px;
+}
+
+.moditem {
+    margin: auto;
+}
+
+.amount {
+    width: 20%;
+}
+
+#drop {
+    width: 10%;
+}
+
+.description {
+    width: 20%;
 }
 
 .switch {
@@ -66,6 +223,7 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    width: 15%;
 }
 
 .switch-checkbox {
@@ -95,7 +253,7 @@ body {
     height: 30px;
     padding: 0;
     line-height: 30px;
-    font-size: 24px;
+    font-size: 1vw;
     color: white;
     font-family: "Helvetica";
     font-weight: bold;
@@ -103,14 +261,14 @@ body {
 }
 
 .switch-inner:before {
-    content: " +";
+    content: " Deposit";
     padding-left: 10px;
     background-color: #34C247;
     color: #FFFFFF;
 }
 
 .switch-inner:after {
-    content: "- ";
+    content: "Expense ";
     padding-right: 10px;
     background-color: #F51B47;
     color: #FFFFFF;
@@ -125,7 +283,7 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 56px;
+    right: 8vw;
     border: 2px solid #FFFFFF;
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
@@ -139,130 +297,33 @@ body {
     right: 0px;
 }
 
-.tablink {
-    background-color: #666666;
-    color: white;
-    float: left;
-    border: none;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-}
-
-.tablink:hover {
-    background-color: #777777;
-}
-
-.tabcontent {
-    padding: 50px;
-    color: white;
-    text-align: center;
-  
-}
-
-.logBox {
-    float: right;
-    position: relative;
-    top: -25px;
-}
-
-input[type=text] {
-    border: none;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    border-radius: 20px;
-}
-
-select {
-    border-radius: 20px;
-    box-sizing: border-box;
-    padding: 9px 10px;
-}
-select:hover {
-    cursor: pointer;
-}
 .modalSubmit {
     border-radius: 20px;
     border: none;
     padding: 9px 20px;
     background-color: #666666;
     color: white;
-}
-.modalButton {
-    border-radius: 20px;
-    border: none;
-    padding: 9px 20px;
-    background-color: #666666;
-    color: white;
+    width: 10%;
+    font-size: 1vw;
+    text-align: center;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 .modalSubmit:hover {
     background-color: #777777;
     cursor: pointer;
 }
-.modalButton:hover {
-    cursor: pointer;
-    background-color: #777777;
-}
 
-.moditem {
-    float: left;
-    margin-left: 5%;
-    
-}
-#indexSign {
-    position: absolute;
-    top: 20px;
-    width:15%;
-}
-#loginSign {
-
-}
-.abcRioButtonContents {
-    font-size: 24px;
-}
-.abcRioButton {
-    border-radius: 20px;
-    margin: auto;
-
-    background-color: #666666;
-    color: white;
-   
-    text-align: center;
-}
-
-.abcRioButton:hover {
-    background-color: #777777;
-    cursor: pointer;
-}
-
-a:link,
-a:visited {
-    background-color: #666666;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-align: center;
-}
-
-a:hover {
-    background-color: #777777;
-    cursor: pointer;
-}
 .closeModal {
     color: white;
     font-size: 24px;
     float: right;
 }
+
 .closeModal:hover {
     cursor: pointer;
-   
-    
 }
+
 #modal {
     display: none;
     position: fixed;
@@ -272,13 +333,18 @@ a:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     animation: fadeIn 0.8s;
 }
+
 @keyframes fadeIn {
-    from{opacity:0} 
-    to{opacity:1}
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
 .modalContent {
@@ -292,4 +358,83 @@ a:hover {
     left: 15%;
     justify-content: center;
     border-radius: 15px;
+}
+
+th,
+td {
+    width: 25%
+}
+
+.transTable {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.newWrapper {
+    width: 75%;
+    margin: auto;
+}
+
+.newBox {
+    background-color: #0D6BFF;
+    width: 75%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 30px;
+    padding: 50px;
+    margin-top: 15%;
+    color: white;
+    line-height: 40px;
+    animation: fadeIn 0.8s;
+    border-radius: 15px;
+}
+
+.newBox * {
+    margin-bottom: 15px;
+}
+
+.newCard {
+    background-color: #28D65C;
+}
+
+.card {
+    width: 75%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 30px;
+    padding: 50px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    animation: fadeIn 0.8s;
+    border-radius: 15px;
+}
+
+.dashboardCard {
+    background-color: #28D65C;
+}
+
+.spendingCard {
+    background-color: #0D6BFF;
+}
+
+.logCard {
+    background-color: #0D6BFF;
+}
+
+svg {
+    width: 90%;
+}
+
+#newSign {
+    position: absolute;
+    top: 25vh;
+    left: 20vw;
+}
+
+#newSignOut {
+    position: absolute;
+    left: 69vw;
+    top: 25vh;
 }
