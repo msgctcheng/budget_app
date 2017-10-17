@@ -16,6 +16,5 @@ CREATE TABLE transactions (
     createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UserId INTEGER,
     PRIMARY KEY (id),
-    FOREIGN KEY (UserId) REFERENCES users(id)
-    
+    FOREIGN KEY (UserId) REFERENCES users(id)    
 );
