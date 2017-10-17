@@ -43,7 +43,6 @@ router.post("/login/verify", function(req, res) {
                 if (dbUser === null) {
                     res.json(false);
                 } else {
-                    console.log(payload);
                     res.json(payload);
                     // check here for if unexpected error with db 
                 }
@@ -128,7 +127,7 @@ router.post("/spending", function(req, res) {
 });
 
 router.post("/api/transactions", function(req, res) {
-
+    console.log(req.body);
     db.User.findOne({
             where: {
                 googleId: req.body.googleId
