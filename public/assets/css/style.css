@@ -28,6 +28,7 @@
     font-size: 14px;
     text-decoration: none;
 }
+
 .currentBalance {
     position: relative;
     font-weight: bold;
@@ -36,9 +37,8 @@
     text-align: center;
     color: white;
     top: 175px;
-    
-
 }
+
 h1 {
     text-align: center;
     margin: auto;
@@ -428,7 +428,6 @@ td {
     background-color: #0D6BFF;
 }
 
-
 svg {
     width: 90%;
     margin: auto;
@@ -444,20 +443,19 @@ svg {
 #newOut {
     position: relative;
     top: 32px;
-    float:right;
+    float: right;
     right: 150px;
 }
 
 .transTable {
     border: 1px solid white;
     background-color: white;
-   
-
 }
+
 .transTable * {
     border: 1px solid white;
-
 }
+
 .transTable th {
     text-decoration: underline;
     background-color: #777777;
