@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/login/verify", function(req, res) {
-    var CLIENT_ID = '482330377038-kppprl611bgmbattktqroa9rl663dh2f.apps.googleusercontent.com';
+    var CLIENT_ID = '482330377038-9e8si9pdrclbp7gvrptloejndrnprrci.apps.googleusercontent.com';
     var token = req.body.idtoken;
     var auth = new GoogleAuth;
     var client = new auth.OAuth2(CLIENT_ID, '', '');
