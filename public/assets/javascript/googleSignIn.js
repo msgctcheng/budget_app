@@ -39,7 +39,7 @@ function onSignIn(googleUser) {
 	            data: userInfo
 	        }).success(function(response) {
 
-	            window.location = currentURL + "/";
+	            window.location = currentURL + "/index";
 	        });
 	    });
     }

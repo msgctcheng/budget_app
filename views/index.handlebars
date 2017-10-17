@@ -83,7 +83,7 @@
         </div>
     </div>
 </div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script>
     function gapiInit() {
@@ -203,35 +203,7 @@
                         }
                 });
         });
-        // $('.dash').on('click', function() {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: window.location.origin + "/spending",
-        //         data: {email : profile.getEmail()}
-        //     }).success(function(response) {
-                
-        //         $.post('/login/verify', {"idtoken" : id_token})
-        //             .then((response) => {
-        //                 // console.log('Response from /api/auth:', response.email);                
-        //                 if (response.valid) {
-        //                     $.ajax({
-        //                         type: "POST",
-        //                         url: window.location.origin + "/userInfo",
-        //                         data: {email : response.email}
-        //                     }).success(function(response) {
-        //                         // console.log('submit on graph data', response);
-
-        //                         graph(response);
-        //                     });
-        //                 } else {
-        //                     console.error(response.error);
-        //                 }
-        //         });
-        //         // $('#balance').text(recentBalance);
-        //         // $('.tableBody').empty().append(html2);
-        //     });
-        // });
-
+      
 
         $('#spending').on('click', function () {
             // get
@@ -258,7 +230,6 @@
                     html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
                         `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
                 }
-                // $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html2);
             });
         });
