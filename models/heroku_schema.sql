@@ -7,7 +7,7 @@
 );
 
 CREATE TABLE transactions (
-    id INTEGER NOT NULL AUTO_INCREMENT,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Sign BOOLEAN,
     Balance  DECIMAL(15,2),
     Amount DECIMAL(15, 2),
@@ -15,7 +15,6 @@ CREATE TABLE transactions (
     Category VARCHAR(25),
     createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UserId INTEGER,
-    PRIMARY KEY (id),
     FOREIGN KEY (UserId) REFERENCES users(id)
     
 );
