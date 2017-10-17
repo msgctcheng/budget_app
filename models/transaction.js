@@ -35,9 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     // We're saying that a Transaction should belong to an User
     // A Transaction can't be created without an User due to the foreign key constraint
     Transactions.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: "UserId"
     });
   };
 
