@@ -48,10 +48,10 @@ Now, open the local application on port 8080 at the URL:
 
 #### Built With:
 
-Javascript
-JQuery
-MySQL
-D3(Data Driven Document)
+* Javascript
+* JQuery
+* MySQL
+* D3(Data Driven Document)
 
 -----------------------------------------
 
