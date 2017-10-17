@@ -4,7 +4,7 @@
         <a class="signOut" href="#" onclick="signOut();">Sign out</a>
     </div>
     <div class="currentBalance">
-        <p>Current Balance:
+        <p>Current Balance: $
             <span id="balance"></span>
         </p>
     </div>
@@ -28,7 +28,7 @@
     <div id="dashboard_bot" class="tabcontent tabBody">
         <div class="dashboardCard card">
             <h3>Transactions Graph</h3>
-            <br>
+           
             <div class="graph"></div>
             <button class="modalButton">Add Transaction</button>
         </div>
@@ -36,7 +36,7 @@
     <div id="spending_bot" class="tabcontent tabBody">
         <div class="spendingCard card">
             <h3>Recent Transactions</h3>
-            <br>
+        
             <div class="transactions-container">
                 <table class="transTable">
                     <thead class="headLine">
@@ -79,7 +79,14 @@
             <input class="description moditem" type="text" placeholder="Description">
 
             <button class="modalSubmit moditem">Submit</button>
+            <audio id="cashregister">
+                <source src="/assets/audio/cashregister.mp3">
+            </audio>
+            <audio id="coindrop">
+                <source src="/assets/audio/coindrop.mp3">
+            </audio>
             <span class="closeModal moditem">&times;</span>
+
         </div>
     </div>
 </div>
@@ -143,6 +150,7 @@
                     Description: $(".description").val().trim(),
                     googleId: profile.getEmail()
                 };
+            document.getElementById("cashregister").play();
             } else {
                 // Make a newTransaction object
                 var newTransaction = {
@@ -152,6 +160,7 @@
                     Description: $(".description").val().trim(),
                     googleId: profile.getEmail()
                 };
+                document.getElementById("coindrop").play();
                 // if balance is negative alert window
             }
 
@@ -178,8 +187,15 @@
                     }
 
                     var dateMoment2 = moment(response[i].createdAt).format('M-DD-YYYY');
-                    html += `<tr><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                    
+                    if (signCheck === "-") {
+                         html += `<tr style="background-color: #E85452"><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
                         `<td>${signCheck}$${response[i].Amount}</td></tr>`;
+                    } else if (signCheck === "+") {
+                         html += `<tr style="background-color: rgb(37, 216, 126)"><td>${dateMoment2}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                        `<td>${signCheck}$${response[i].Amount}</td></tr>`;
+                    }
+                  
                 }
                 $('#balance').text(recentBalance);
                 $('.tableBody').empty().append(html);
@@ -227,8 +243,15 @@
                         signCheck2 = "-";
                     }
                     var dateMoment = moment(response[i].createdAt).format('M-DD-YYYY');
-                    html2 += `<tr><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+
+                    if (signCheck2 === "-") {
+                        html2 += `<tr style="background-color: #E85452"><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
+                         `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
+                    } else if (signCheck2 === "+") {
+                        html2 += `<tr style="background-color: rgb(37, 216, 126)"><td>${dateMoment}</td><td>${response[i].Category}</td><td>${response[i].Description}</td>` +
                         `<td>${signCheck2}$${response[i].Amount}</td></tr>`;
+                    }
+                    
                 }
                 $('.tableBody').empty().append(html2);
             });
