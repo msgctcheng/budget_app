@@ -16,8 +16,8 @@ function onSignIn(googleUser) {
             // console.log('Signed in as: ' + xhr.responseText);
             if (xhr.responseText === "false") {
                 window.location = currentURL + "/newUser";
-            } else if (window.location.href !== window.location.origin + "/") {
-            	window.location = currentURL + "/";
+            } else if (window.location.href !== window.location.origin + "/index") {
+            	window.location = currentURL + "/index";
             }
         };
         xhr.send('idtoken=' + id_token);
@@ -50,6 +50,6 @@ function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
         console.log('User signed out.');
-        window.location = window.location.origin + "/login"
+        window.location = window.location.origin + "/"
     });
 }

@@ -92,7 +92,7 @@ router.post("/userInfo", function(req, res) {
                 for (i in transData) {
                     userData.push(transData[i].dataValues)
                 }
-                console.log(userData);
+                // console.log(userData);
                 res.json(userData);
             });
         });
@@ -150,7 +150,7 @@ router.post("/api/transactions", function(req, res) {
                         var balance = parseFloat(order.dataValues.Balance) - parseFloat(req.body.Amount);
                         var sign = false;
                     }
-                    console.log(order);
+                    // console.log(order);
                     db.Transactions.upsert({
                             Amount: parseFloat(req.body.Amount),
                             Sign: sign,
@@ -181,7 +181,7 @@ router.post("/api/transactions", function(req, res) {
                                             for (i in nest) {
                                                 allTrans.push(nest[i].dataValues)
                                             }
-                                            console.log("Transactions", allTrans);
+                                            // console.log("Transactions", allTrans);
                                             res.json(allTrans);
                                         });
                                 });
