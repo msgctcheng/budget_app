@@ -5,12 +5,12 @@ var path = require("path");
 var GoogleAuth = require('google-auth-library');
 var sequelize = require("sequelize");
 
-router.get("/", function(req, res) {
+router.get("/index", function(req, res) {
     // db.User.find()
     res.render("index");
 });
 
-router.get("/login", function(req, res) {
+router.get("/", function(req, res) {
     res.render("login");
 });
 
