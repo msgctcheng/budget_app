@@ -43,6 +43,7 @@ router.post("/login/verify", function(req, res) {
                 if (dbUser === null) {
                     res.json(false);
                 } else {
+                    console.log(payload);
                     res.json(payload);
                     // check here for if unexpected error with db 
                 }
