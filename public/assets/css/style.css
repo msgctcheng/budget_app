@@ -428,6 +428,7 @@ td {
     background-color: #0D6BFF;
 }
 
+
 svg {
     width: 90%;
     margin: auto;
@@ -449,7 +450,8 @@ svg {
 
 .transTable {
     border: 1px solid white;
-    background-color: rgb(37, 216, 126);
+    background-color: white;
+   
 
 }
 .transTable * {
